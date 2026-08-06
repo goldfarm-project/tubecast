@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【第1話】AI自動集金システムの全貌｜TubeCast 特別公開</title>
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="【第1話】AI自動集金システムの全貌">
+<meta property="og:description" content="顔出し・声出し・動画作成すら不要。AIが24時間365日あなたの代わりに働く仕組みを、開発者・上田幸司が公開します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-deep:#05080F;
+  --bg-panel:#0B111E;
+  --gold:#D4AF37;
+  --gold-light:#F5E6B8;
+  --gold-deep:#9C7A1B;
+  --champagne:#EFE3C2;
+  --text-white:#FFFFFF;
+  --text-silver:#C9D2DF;
+  --text-muted:#7B8494;
+  --green:#00D26A;
+  --green-deep:#009E50;
+  --max:880px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans JP',sans-serif;
+  background:var(--bg-deep);
+  color:var(--text-white);
+  line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.serif{font-family:'Noto Serif JP',serif}
+.bg-layer{
+  position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(ellipse 90% 45% at 50% -5%, rgba(212,175,55,.13) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 40% at 12% 65%, rgba(212,175,55,.05) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 92% 92%, rgba(0,210,106,.05) 0%, transparent 60%);
+}
+.bg-grid{
+  position:fixed;inset:0;z-index:-1;
+  background-image:
+    linear-gradient(rgba(212,175,55,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(212,175,55,.03) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 70% 50% at 50% 0%,#000 0%,transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 50% at 50% 0%,#000 0%,transparent 80%);
+  pointer-events:none;
+}
+.container{max-width:var(--max);margin:0 auto;padding:44px 22px 80px}
+
+/* ── バッジ ── */
+.badge-wrap{text-align:center;margin-bottom:24px}
+.badge{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid rgba(212,175,55,.55);
+  background:linear-gradient(180deg,rgba(212,175,55,.14) 0%,rgba(212,175,55,.04) 100%);
+  color:var(--gold-light);font-weight:700;font-size:.84rem;
+  padding:7px 26px;border-radius:50px;letter-spacing:.18em;
+  box-shadow:0 0 24px rgba(212,175,55,.25),inset 0 1px 0 rgba(255,255,255,.12);
+}
+.badge::before,.badge::after{content:"";width:22px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.badge::after{background:linear-gradient(90deg,var(--gold),transparent)}
+
+/* ── 見出し ── */
+.hero{text-align:center;margin-bottom:34px}
+.hero .pre{font-size:1rem;font-weight:700;color:var(--text-silver);letter-spacing:.08em;margin-bottom:14px}
+.hero h1{
+  font-family:'Noto Serif JP',serif;font-weight:900;
+  font-size:clamp(1.65rem,5.4vw,2.9rem);line-height:1.45;letter-spacing:.01em;
+}
+.hero h1 .gold{
+  background:linear-gradient(180deg,var(--gold-light) 0%,var(--gold) 45%,var(--gold-deep) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero .sub{margin-top:18px;color:var(--text-silver);font-size:clamp(.92rem,2.6vw,1.05rem)}
+
+/* ── 動画 ── */
+.video-shell{
+  position:relative;border-radius:14px;overflow:hidden;
+  border:1px solid rgba(212,175,55,.38);
+  box-shadow:0 0 0 1px rgba(0,0,0,.6),0 24px 70px rgba(0,0,0,.75),0 0 60px rgba(212,175,55,.14);
+  background:#000;
+}
+.video-ratio{position:relative;width:100%;padding-top:56.25%}
+.video-ratio iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-note{
+  margin-top:16px;text-align:center;color:var(--text-muted);font-size:.86rem;line-height:1.8;
+}
+.video-note strong{color:var(--champagne)}
+
+/* ── 進行バー ── */
+.steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:44px 0 10px;
+}
+.step{
+  background:linear-gradient(180deg,rgba(255,255,255,.045) 0%,rgba(255,255,255,.015) 100%);
+  border:1px solid rgba(212,175,55,.22);border-radius:12px;
+  padding:20px 14px;text-align:center;position:relative;
+}
+.step.now{border-color:rgba(212,175,55,.7);box-shadow:0 0 30px rgba(212,175,55,.16)}
+.step .n{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid rgba(212,175,55,.5);color:var(--gold-light);
+  font-weight:900;font-size:.9rem;margin-bottom:9px;
+}
+.step.now .n{background:linear-gradient(180deg,var(--gold-light),var(--gold-deep));color:#1a1206;border-color:var(--gold-light)}
+.step .t{font-weight:700;font-size:.95rem;line-height:1.6}
+.step .d{color:var(--text-muted);font-size:.78rem;line-height:1.7;margin-top:5px}
+@media(max-width:600px){
+  .steps{grid-template-columns:1fr;gap:9px}
+  .step{display:flex;align-items:center;gap:14px;text-align:left;padding:15px 16px}
+  .step .n{margin-bottom:0;flex-shrink:0}
+  .step .d{margin-top:2px}
+}
+
+/* ── 区切り ── */
+.gold-line{
+  border:none;height:1px;max-width:520px;margin:56px auto;position:relative;
+  background:linear-gradient(90deg,transparent,rgba(212,175,55,.55),transparent);
+}
+.gold-line::after{
+  content:"◆";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  color:var(--gold);font-size:.6rem;background:var(--bg-deep);padding:0 14px;
+}
+
+/* ── CTAブロック ── */
+.cta-block{
+  background:linear-gradient(180deg,rgba(212,175,55,.09) 0%,rgba(11,17,30,.9) 60%);
+  border:1px solid rgba(212,175,55,.45);border-radius:16px;
+  padding:38px 26px 34px;text-align:center;
+  box-shadow:0 0 70px rgba(212,175,55,.1);
+}
+.cta-block .kicker{
+  color:var(--gold-light);font-weight:700;letter-spacing:.16em;font-size:.8rem;margin-bottom:12px;
+}
+.cta-block h2{
+  font-family:'Noto Serif JP',serif;font-weight:900;
+  font-size:clamp(1.25rem,4.2vw,1.85rem);line-height:1.55;margin-bottom:8px;
+}
+.cta-block p.lead{color:var(--text-silver);font-size:.95rem;margin-bottom:22px}
+.offer{
+  display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:24px;
+}
+.offer span{
+  border:1px solid rgba(212,175,55,.35);border-radius:8px;
+  padding:8px 15px;font-size:.85rem;font-weight:700;color:var(--champagne);
+  background:rgba(212,175,55,.06);
+}
+.btn-main{
+  display:inline-block;text-decoration:none;
+  background:linear-gradient(180deg,#F7E9BE 0%,var(--gold) 45%,var(--gold-deep) 100%);
+  color:#1A1206;font-weight:900;
+  font-size:clamp(1.05rem,3.4vw,1.35rem);letter-spacing:.02em;
+  padding:20px 44px;border-radius:60px;
+  box-shadow:0 10px 34px rgba(212,175,55,.4),inset 0 1px 0 rgba(255,255,255,.6);
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 16px 44px rgba(212,175,55,.55),inset 0 1px 0 rgba(255,255,255,.6)}
+.btn-arrow{margin-left:8px}
+.btn-sub{margin-top:14px;color:var(--text-muted);font-size:.82rem;line-height:1.8}
+
+/* ── ボタン直下の重要事項 ── */
+.cta-caution{
+  margin:20px auto 0;max-width:560px;text-align:left;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(212,175,55,.4);
+  border-radius:10px;padding:18px 20px;
+}
+.cta-caution .ct{
+  color:var(--gold-light);font-weight:700;font-size:.92rem;
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;
+}
+.cta-caution .ct::before{content:"！";
+  display:inline-flex;align-items:center;justify-content:center;
+  width:20px;height:20px;border-radius:50%;flex-shrink:0;
+  background:var(--gold);color:#1A1206;font-size:.78rem;font-weight:900}
+.cta-caution p{color:var(--text-silver);font-size:.9rem;line-height:1.85}
+.cta-caution p+p{margin-top:10px}
+.cta-caution strong{color:var(--champagne)}
+
+/* ── 動画下の注記 ── */
+.legal-note{
+  margin-top:14px;padding:14px 16px;border-radius:9px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);
+  color:#8A93A3;font-size:.78rem;line-height:1.8;
+}
+
+/* ── セクション見出し ── */
+h2.sec{
+  font-family:'Noto Serif JP',serif;font-weight:900;text-align:center;
+  font-size:clamp(1.2rem,4vw,1.7rem);line-height:1.55;margin-bottom:26px;
+}
+h2.sec .gold{color:var(--gold-light)}
+
+/* ── 注記パネル ── */
+.panel{
+  background:var(--bg-panel);border:1px solid rgba(212,175,55,.2);
+  border-radius:12px;padding:24px 22px;
+}
+.panel + .panel{margin-top:14px}
+.panel h3{
+  font-size:1rem;font-weight:700;color:var(--gold-light);margin-bottom:8px;
+  display:flex;align-items:flex-start;gap:9px;line-height:1.6;
+}
+.panel h3::before{content:"Q.";color:var(--gold);font-weight:900;flex-shrink:0}
+.panel p{color:var(--text-silver);font-size:.92rem}
+
+.notice{
+  margin-top:34px;border-left:2px solid rgba(212,175,55,.5);
+  padding:4px 0 4px 18px;color:var(--text-silver);font-size:.9rem;
+}
+.notice strong{color:var(--champagne)}
+
+/* ── フッター ── */
+footer{
+  text-align:center;padding:44px 20px 32px;
+  border-top:1px solid rgba(255,255,255,.07);margin-top:60px;
+  color:var(--text-muted);font-size:.78rem;line-height:2;
+}
+footer a{color:var(--text-muted);text-decoration:underline}
+.disclaimer{
+  max-width:640px;margin:0 auto 18px;color:#6C7484;font-size:.74rem;line-height:1.85;
+}
+</style>
+</head>
+<body>
+<div class="bg-layer"></div>
+<div class="bg-grid"></div>
+
+<div class="container">
+
+  <div class="badge-wrap"><span class="badge">第 1 話・限定公開</span></div>
+
+  <div class="hero">
+    <p class="pre">顔出し・声出し・動画作成すら、もう不要。</p>
+    <h1>AIが24時間、<br>あなたの代わりに<br><span class="gold">「集金」する仕組み</span></h1>
+    <p class="sub">開発者・上田幸司 × マサ　特別対談（約25分）</p>
+  </div>
+
+  <div class="video-shell">
+    <div class="video-ratio">
+      <!-- ▼▼ YOUTUBE_VIDEO_ID を、限定公開でアップした動画のIDに差し替えてください ▼▼ -->
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/YOUTUBE_VIDEO_ID?rel=0&modestbranding=1&playsinline=1"
+        title="第1話 AI自動集金システムの全貌"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+      <!-- ▲▲ ここまで ▲▲ -->
+    </div>
+  </div>
+
+  <p class="video-note">
+    ※この動画は<strong>登録された方だけに公開</strong>しています。URLの共有・転載はご遠慮ください。<br>
+    最後まで視聴された方に、システムの受け取り方法をご案内しています。
+  </p>
+
+  <div class="legal-note">
+    ※動画内でご紹介している実績・数値は、いずれも個人の経験に基づくものです。過去のスマートフォンアプリ事業での実績を含んでおり、本システムを利用した場合の成果を示すものではありません。成果には個人差があり、収益を保証するものではありません。<br>
+    ※動画内で言及している「先着100名」は、<strong>本システムを継続してご利用いただける方の上限</strong>です。無料期間を終えてご利用を終了された方の分だけ、新しい枠が開きます。
+  </div>
+
+  <div class="steps">
+    <div class="step now">
+      <div class="n">1</div>
+      <div>
+        <div class="t">この動画を視聴</div>
+        <div class="d">いま、ここです</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n">2</div>
+      <div>
+        <div class="t">システムを受け取る</div>
+        <div class="d">下のフォームから申請</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n">3</div>
+      <div>
+        <div class="t">使い方ウェビナーに参加</div>
+        <div class="d">受け取り後にご案内</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="gold-line">
+
+  <div class="cta-block">
+    <div class="kicker">2週間 完全無料・継続利用は100名まで</div>
+    <h2>動画の下のフォームから、<br>システムを受け取ってください。</h2>
+    <p class="lead">ご登録いただいたメールアドレス宛に、<br>システムの受け取り手順をお送りします。</p>
+
+    <div class="offer">
+      <span>TubeCast 本体</span>
+      <span>専用マニュアル</span>
+      <span>使い方ウェビナー参加権</span>
+    </div>
+
+    <!-- ▼▼ FORM_URL を、アスメルで発行した登録フォームのURLに差し替えてください ▼▼ -->
+    <a href="FORM_URL" class="btn-main">システムを受け取る<span class="btn-arrow">→</span></a>
+    <!-- ▲▲ ここまで ▲▲ -->
+
+    <div class="cta-caution">
+      <div class="ct">お申し込みの前に、必ずお読みください</div>
+      <p>
+        システムの受け取りには、<strong>クレジットカードのご登録が必要です。</strong>
+        14日間の無料期間内に解約された場合、<strong>料金は一切かかりません。</strong>
+        解約は管理画面からボタン一つで完了し、お電話は不要です。
+      </p>
+      <p>
+        「無料なのに、なぜカードが必要なのか」——その理由は、下のご質問欄に書いています。
+        ご納得いただいたうえで、お進みください。
+      </p>
+    </div>
+
+    <p class="btn-sub">
+      ご登録いただいたメールアドレス宛に、受け取り手順をお送りします。
+    </p>
+  </div>
+
+  <div class="notice">
+    <strong>動画内でご案内した「個別サポート会」について</strong><br>
+    個別サポート会は、まず<strong>使い方ウェビナー（Zoom または 会場でのセミナー）</strong>にご参加いただいた方へ、
+    ウェビナーの中でご案内します。システムを受け取っていただくと、ウェビナーの日程をメールでお送りします。
+    まずは上のフォームから、システムの受け取りを完了させてください。
+  </div>
+
+  <hr class="gold-line">
+
+  <h2 class="sec">よくある<span class="gold">ご質問</span></h2>
+
+  <div class="panel">
+    <h3>本当に2週間、無料で使えるのですか？</h3>
+    <p>はい。2週間の無料期間中に解約された場合、料金は一切発生しません。解約は管理画面からボタン一つで完了し、お電話は不要です。</p>
+  </div>
+  <div class="panel">
+    <h3>無料なのに、なぜカードの登録が必要なのですか？</h3>
+    <p>本システムはAIサーバーを24時間稼働させて動画を生成します。重複登録や無責任な登録が増えると、本気で取り組む方のサーバーが重くなってしまうため、本人確認とお申し込みの意思確認としてご登録をお願いしています。カード情報は暗号化され、弊社が閲覧することはありません。</p>
+  </div>
+  <div class="panel">
+    <h3>「先着100名」とは、どういう意味ですか？</h3>
+    <p>100名という数は、<strong style="color:var(--champagne)">本システムを継続してご利用いただける方の上限</strong>です。同じ手法で運用するチャンネルが増えすぎると、参加者どうしで視聴者を奪い合うことになるため、人数に上限を設けています。無料期間を終えてご利用を終了された方が出た分だけ、新しい枠が開きます。現在の空き状況は、お申し込みの際にご確認ください。</p>
+  </div>
+  <div class="panel">
+    <h3>パソコンが苦手でも使えますか？</h3>
+    <p>初期設定は約10分です。受け取り後の「使い方ウェビナー」で、画面をお見せしながら一つひとつご説明しますので、その通りに操作していただければ設定は完了します。</p>
+  </div>
+  <div class="panel">
+    <h3>顔や声を出す必要はありませんか？</h3>
+    <p>ありません。ネタ探し・原稿作成・音声の吹き込み・編集・投稿まで、すべてAIが行います。ご自身が運営しているチャンネルだと知られることもありません。</p>
+  </div>
+
+  <footer>
+    <p class="disclaimer">
+      ※記載の実績・数値は個人の経験に基づくものであり、成果には個人差があります。収益を保証するものではありません。<br>
+      ※本ページは登録者限定の非公開ページです。
+    </p>
+    <a href="#">特定商取引法に基づく表記</a> &nbsp;|&nbsp;
+    <a href="#">プライバシーポリシー</a>
+    <p>© 2026 TubeCast Project. All Rights Reserved.</p>
+  </footer>
+
+</div>
+</body>
+</html>

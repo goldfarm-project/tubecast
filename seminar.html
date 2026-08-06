@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【参加無料】TubeCast 使い方セミナー｜同じ再生数のまま、収益の桁を変える</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-deep:#05080F; --bg-panel:#0B111E;
+  --gold:#D4AF37; --gold-light:#F5E6B8; --gold-deep:#9C7A1B; --champagne:#EFE3C2;
+  --text-white:#FFF; --text-silver:#C9D2DF; --text-muted:#7B8494;
+  --green:#00D26A; --blue:#5AA9F0; --red:#E5534B;
+  --max:880px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg-deep);color:var(--text-white);line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.bg-layer{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(ellipse 90% 45% at 50% -5%,rgba(212,175,55,.13) 0%,transparent 65%),
+  radial-gradient(ellipse 60% 40% at 12% 62%,rgba(212,175,55,.05) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 35% at 92% 92%,rgba(0,210,106,.05) 0%,transparent 60%)}
+.bg-grid{position:fixed;inset:0;z-index:-1;
+  background-image:linear-gradient(rgba(212,175,55,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,.03) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 70% 50% at 50% 0%,#000 0%,transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 50% at 50% 0%,#000 0%,transparent 80%);pointer-events:none}
+.container{max-width:var(--max);margin:0 auto;padding:44px 22px 80px}
+
+.badge-wrap{text-align:center;margin-bottom:24px}
+.badge{display:inline-flex;align-items:center;gap:10px;
+  border:1px solid rgba(212,175,55,.55);
+  background:linear-gradient(180deg,rgba(212,175,55,.14) 0%,rgba(212,175,55,.04) 100%);
+  color:var(--gold-light);font-weight:700;font-size:.82rem;padding:7px 26px;border-radius:50px;letter-spacing:.16em;
+  box-shadow:0 0 24px rgba(212,175,55,.25),inset 0 1px 0 rgba(255,255,255,.12)}
+.badge::before,.badge::after{content:"";width:22px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.badge::after{background:linear-gradient(90deg,var(--gold),transparent)}
+
+.hero{text-align:center;margin-bottom:40px}
+.hero .pre{font-size:1rem;font-weight:700;color:var(--text-silver);margin-bottom:14px}
+.hero h1{font-family:'Noto Serif JP',serif;font-weight:900;font-size:clamp(1.6rem,5.2vw,2.75rem);line-height:1.5}
+.hero h1 .gold{background:linear-gradient(180deg,var(--gold-light) 0%,var(--gold) 45%,var(--gold-deep) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero .sub{margin-top:20px;color:var(--text-silver);font-size:clamp(.92rem,2.6vw,1.05rem)}
+
+.compare{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;margin:38px 0 10px}
+.cbox{background:linear-gradient(180deg,rgba(255,255,255,.045) 0%,rgba(255,255,255,.012) 100%);
+  border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:22px 14px;text-align:center}
+.cbox.now{border-color:rgba(229,83,75,.4)}
+.cbox.goal{border-color:rgba(212,175,55,.6);box-shadow:0 0 34px rgba(212,175,55,.14)}
+.cbox .lbl{font-size:.78rem;color:var(--text-muted);letter-spacing:.1em;margin-bottom:6px}
+.cbox .num{font-family:'Noto Serif JP',serif;font-weight:900;font-size:clamp(1.5rem,5.6vw,2.2rem);line-height:1.3}
+.cbox.now .num{color:#E8A5A0}
+.cbox.goal .num{color:var(--gold-light)}
+.cbox .fine{font-size:.74rem;color:var(--text-muted);margin-top:6px;line-height:1.6}
+.carrow{color:var(--gold);font-size:1.5rem;font-weight:900;text-align:center}
+@media(max-width:560px){.compare{grid-template-columns:1fr;gap:10px}.carrow{transform:rotate(90deg)}}
+
+.gold-line{border:none;height:1px;max-width:520px;margin:60px auto;position:relative;
+  background:linear-gradient(90deg,transparent,rgba(212,175,55,.55),transparent)}
+.gold-line::after{content:"◆";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  color:var(--gold);font-size:.6rem;background:var(--bg-deep);padding:0 14px}
+
+h2.sec{font-family:'Noto Serif JP',serif;font-weight:900;text-align:center;
+  font-size:clamp(1.3rem,4.4vw,2rem);line-height:1.5;margin-bottom:14px}
+h2.sec .gold{color:var(--gold-light)}
+p.sec-lead{text-align:center;color:var(--text-silver);font-size:.95rem;margin-bottom:34px}
+
+.body-text{color:var(--text-silver);font-size:clamp(.95rem,2.7vw,1.02rem)}
+.body-text p+p{margin-top:18px}
+.body-text strong{color:var(--champagne);font-weight:700}
+.body-text .em{color:var(--gold-light);font-weight:700;border-bottom:2px solid rgba(212,175,55,.45);padding-bottom:1px}
+
+/* 得られるもの */
+.gets{counter-reset:g;display:grid;gap:14px}
+.get{position:relative;background:var(--bg-panel);border:1px solid rgba(212,175,55,.22);border-radius:13px;padding:24px}
+.get::before{counter-increment:g;content:"0" counter(g);position:absolute;top:-13px;left:20px;
+  font-family:'Noto Serif JP',serif;font-weight:900;font-size:.9rem;letter-spacing:.06em;
+  color:#1A1206;background:linear-gradient(180deg,var(--gold-light),var(--gold));padding:2px 12px;border-radius:20px}
+.get h3{font-size:clamp(1.02rem,3.2vw,1.2rem);font-weight:700;line-height:1.65;margin-bottom:9px}
+.get h3 .hl{color:var(--gold-light)}
+.get p{color:var(--text-silver);font-size:.92rem;line-height:1.9}
+
+/* ══ 日程カード ══ */
+.dates{display:grid;gap:15px}
+.dcard{
+  display:grid;grid-template-columns:132px 1fr auto;gap:20px;align-items:center;
+  background:var(--bg-panel);border:1px solid rgba(212,175,55,.24);border-radius:14px;
+  padding:22px 24px;position:relative;
+}
+.dcard.venue{border-color:rgba(90,169,240,.35);background:linear-gradient(180deg,rgba(90,169,240,.05),var(--bg-panel) 60%)}
+.dcard .when{text-align:center;border-right:1px solid rgba(255,255,255,.09);padding-right:16px}
+.dcard .md{font-family:'Noto Serif JP',serif;font-weight:900;font-size:1.75rem;line-height:1.15;color:var(--text-white)}
+.dcard .md .mo{font-size:1rem;margin-right:1px}
+.dcard .dow{font-size:.82rem;color:var(--text-muted);margin-top:2px}
+.dcard .time{font-weight:700;font-size:.95rem;color:var(--gold-light);margin-top:6px}
+.dcard .what .fmt{
+  display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  padding:3px 11px;border-radius:5px;margin-bottom:7px}
+.dcard .what .fmt.zoom{background:rgba(0,210,106,.12);border:1px solid rgba(0,210,106,.45);color:#6BF0AC}
+.dcard .what .fmt.hall{background:rgba(90,169,240,.12);border:1px solid rgba(90,169,240,.5);color:#A8D3F8}
+.dcard .what h3{font-size:1.08rem;font-weight:700;line-height:1.55}
+.dcard .what p{color:var(--text-muted);font-size:.85rem;line-height:1.75;margin-top:3px}
+.dcard .go{
+  display:inline-block;text-decoration:none;white-space:nowrap;
+  background:linear-gradient(180deg,#F7E9BE 0%,var(--gold) 45%,var(--gold-deep) 100%);
+  color:#1A1206;font-weight:900;font-size:1rem;padding:15px 26px;border-radius:50px;
+  box-shadow:0 8px 26px rgba(212,175,55,.34),inset 0 1px 0 rgba(255,255,255,.6);
+  transition:transform .18s ease,box-shadow .18s ease}
+.dcard .go:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(212,175,55,.5),inset 0 1px 0 rgba(255,255,255,.6)}
+.dcard .tag{
+  position:absolute;top:-11px;right:20px;font-size:.7rem;font-weight:700;letter-spacing:.08em;
+  background:linear-gradient(180deg,#F2B4AF,#C4564E);color:#2A0D0B;padding:2px 12px;border-radius:20px}
+@media(max-width:720px){
+  .dcard{grid-template-columns:104px 1fr;gap:16px;padding:20px}
+  .dcard .go{grid-column:1/-1;text-align:center;padding:16px}
+  .dcard .md{font-size:1.5rem}
+}
+
+/* 開催概要 */
+.info{background:var(--bg-panel);border:1px solid rgba(212,175,55,.28);border-radius:14px;overflow:hidden}
+.info dl{display:grid;grid-template-columns:120px 1fr}
+.info dt{padding:16px 18px;background:rgba(212,175,55,.06);color:var(--gold-light);font-weight:700;font-size:.88rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.info dd{padding:16px 18px;font-size:.93rem;color:var(--text-silver);border-bottom:1px solid rgba(255,255,255,.06)}
+.info dl>*:nth-last-child(-n+2){border-bottom:none}
+@media(max-width:560px){
+  .info dl{grid-template-columns:1fr}
+  .info dt{padding:12px 16px 4px;background:transparent;border-bottom:none}
+  .info dd{padding:0 16px 14px}
+}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:660px){.two{grid-template-columns:1fr}}
+.card{background:var(--bg-panel);border:1px solid rgba(255,255,255,.09);border-radius:13px;padding:22px 20px}
+.card.yes{border-color:rgba(212,175,55,.35)}
+.card h3{font-size:1rem;font-weight:700;margin-bottom:12px}
+.card.yes h3{color:var(--gold-light)}
+.card.no h3{color:#E8A5A0}
+.card ul{list-style:none}
+.card li{color:var(--text-silver);font-size:.9rem;line-height:1.8;padding-left:22px;position:relative;margin-bottom:8px}
+.card.yes li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:900}
+.card.no li::before{content:"×";position:absolute;left:0;color:#E8A5A0;font-weight:900}
+
+.speaker{display:flex;gap:20px;align-items:flex-start;background:var(--bg-panel);
+  border:1px solid rgba(212,175,55,.22);border-radius:13px;padding:24px 22px}
+.speaker .ph{width:82px;height:82px;border-radius:50%;flex-shrink:0;
+  border:1px solid rgba(212,175,55,.5);
+  background:linear-gradient(160deg,rgba(212,175,55,.22),rgba(255,255,255,.03));
+  display:flex;align-items:center;justify-content:center;color:var(--gold-light);font-size:.7rem;text-align:center;line-height:1.4}
+.speaker h3{font-size:1.1rem;font-weight:900;margin-bottom:2px}
+.speaker .role{color:var(--gold-light);font-size:.82rem;margin-bottom:10px}
+.speaker p{color:var(--text-silver);font-size:.9rem}
+@media(max-width:560px){.speaker{flex-direction:column;align-items:center;text-align:center}}
+
+.notice{margin-top:34px;border-left:2px solid rgba(212,175,55,.5);padding:4px 0 4px 18px;
+  color:var(--text-silver);font-size:.88rem}
+.notice strong{color:var(--champagne)}
+
+footer{text-align:center;padding:44px 20px 32px;border-top:1px solid rgba(255,255,255,.07);
+  margin-top:60px;color:var(--text-muted);font-size:.78rem;line-height:2}
+footer a{color:var(--text-muted);text-decoration:underline}
+.disclaimer{max-width:660px;margin:0 auto 18px;color:#6C7484;font-size:.74rem;line-height:1.85}
+</style>
+</head>
+<body>
+<div class="bg-layer"></div>
+<div class="bg-grid"></div>
+
+<div class="container">
+
+  <div class="badge-wrap"><span class="badge">参加無料・TubeCast 使い方セミナー</span></div>
+
+  <div class="hero">
+    <p class="pre">動画1本、4.5ドル。それを30本で、月に約2万円。</p>
+    <h1>その再生数のまま、<br><span class="gold">収益の桁を変える</span>方法が<br>あります。</h1>
+    <p class="sub">
+      再生数を50倍にする話ではありません。<br>
+      <strong>いまの再生数のまま</strong>、受け取る金額だけを変える話です。
+    </p>
+  </div>
+
+  <div class="compare">
+    <div class="cbox now">
+      <div class="lbl">広告収入だけの場合</div>
+      <div class="num">月 約2万円</div>
+      <div class="fine">1本4.5ドル × 30本</div>
+    </div>
+    <div class="carrow">▶</div>
+    <div class="cbox goal">
+      <div class="lbl">同じ再生数のまま</div>
+      <div class="num">月100万円+</div>
+      <div class="fine">を目指す組み立て方</div>
+    </div>
+  </div>
+
+  <hr class="gold-line">
+
+  <h2 class="sec">なぜ、広告収入だけだと<br><span class="gold">月2万円で止まる</span>のか。</h2>
+
+  <div class="body-text">
+    <p>第1話で、上田さんがこんな計算をお見せしました。</p>
+    <p><strong>「動画1本から4.5ドル。それが毎日1本、自動で投稿される。月に30本で130ドル、日本円で約2万円」</strong></p>
+    <p>この数字自体は本当です。実際に、AIが勝手に積み上げてくれます。ただ、正直にお伝えしておきたいことがあります。</p>
+    <p>この2万円は、<strong>「広告収入」だけで計算した金額</strong>です。そして広告収入というのは、再生数がそのまま天井になります。<br>
+    ——ということは、月100万円にしようと思ったら、単純計算で<strong>再生数を50倍</strong>にしなければいけない。</p>
+    <p>それは、現実的ではありません。少なくとも、すぐには無理です。</p>
+    <p>では、月に数万回しか再生されていないチャンネルで、100万円を手にしている人は何をしているのか。<br>
+    答えは単純で、<span class="em">再生数を増やしているのではなく、一人あたりから受け取る金額を変えている</span>んです。</p>
+    <p>1回の再生でもらえる広告費は、およそ0.3円。<br>
+    でも、その動画を見て「この人の話をもっと聞きたい」と思ってくれた人が<strong>たった10人</strong>いたとしたら。その10人に対して、あなたができることは広告表示だけではないはずです。</p>
+    <p>この「<strong>再生数ではなく、人数で考える</strong>」という発想の切り替えと、その具体的な手順を、<br>当日たっぷりお話しします。</p>
+  </div>
+
+  <hr class="gold-line">
+
+  <h2 class="sec">この日に、<span class="gold">持ち帰っていただくもの</span></h2>
+  <p class="sec-lead">動画やメールではお伝えしていない内容です。</p>
+
+  <div class="gets">
+    <div class="get">
+      <h3>広告収入が<span class="hl">月2万円で頭打ちになる理由</span>を、数字で分解します</h3>
+      <p>1再生あたりいくら入るのか。月100万円にするには何回再生が必要なのか。ここを一度きちんと直視しておかないと、いつまでも「あと少し伸びれば」と期待し続けることになります。まず現在地を、正確に把握していただきます。</p>
+    </div>
+    <div class="get">
+      <h3>再生数が少なくても成立する、<span class="hl">もう一つの収益の作り方</span></h3>
+      <p>広告以外に、あなたのチャンネルからお金が生まれる経路があります。当日は「何人に見てもらえば、いくらになるのか」という計算式そのものをお見せします。数字を入れて、その場でご自分のチャンネルに当てはめていただけます。</p>
+    </div>
+    <div class="get">
+      <h3>動画を見てくれた人と、<span class="hl">もう一度つながるための導線</span>の作り方</h3>
+      <p>動画は、見て終わればそれきりです。この「見て終わり」を「もう一度届けられる状態」に変える具体的な手順をお伝えします。何を、どこに置いて、どう案内するのか。実際の画面をお見せしながら説明します。</p>
+    </div>
+    <div class="get">
+      <h3>自分の商品を持っていない人が、<span class="hl">何を扱えばいいのか</span></h3>
+      <p>「売るものがない」という方がほとんどだと思います。これは問題になりません。ご自分で商品を作らなくても成立する形があります。どこから何を持ってくるのか、選ぶときの基準まで具体的にお話しします。</p>
+    </div>
+    <div class="get">
+      <h3>狙うべきジャンルと、<span class="hl">絶対に避けるべきジャンル</span></h3>
+      <p>この方法は、ジャンル選びで結果がほぼ決まります。今もっとも視聴者が増えている領域と、再生数は稼げても収益につながらない領域を、実例でお見せします。ここを間違えると、動画は伸びるのにお金にならない、という状態になります。</p>
+    </div>
+    <div class="get">
+      <h3><span class="hl">TubeCastの初期設定を、その場で完了</span>させます</h3>
+      <p>管理画面を画面共有でお見せしながら、一緒に設定を進めます。約10分の作業ですが、ここでつまずいて放置してしまう方が一番多い。当日中に、あなたのチャンネルでAIが動き出す状態まで持っていきます。</p>
+    </div>
+    <div class="get">
+      <h3>質疑応答（<span class="hl">時間の許すかぎり</span>）</h3>
+      <p>開発者本人が直接お答えします。設定のことでも、ジャンル選びのことでも、収益の見通しでも構いません。マニュアルを読んでも分からなかったことを、その場で解消してお帰りください。</p>
+    </div>
+  </div>
+
+  <hr class="gold-line">
+
+  <!-- ══════════ 日程を選ぶ ══════════ -->
+  <h2 class="sec" id="dates">ご都合の良い日を<span class="gold">お選びください</span></h2>
+  <p class="sec-lead">
+    内容はどの回も同じです。参加費はいずれも無料。<br>
+    ボタンを押すと、その回の予約フォームが開きます。
+  </p>
+
+  <div class="dates">
+
+    <!-- ── 8/8 Zoom ── -->
+    <div class="dcard">
+      <span class="tag">最短で参加できる回</span>
+      <div class="when">
+        <div class="md"><span class="mo">8</span>/8</div>
+        <div class="dow">土曜日</div>
+        <div class="time">19:00〜</div>
+      </div>
+      <div class="what">
+        <span class="fmt zoom">ZOOM・オンライン</span>
+        <h3>ご自宅から参加</h3>
+        <p>カメラ・マイクはオフのままで構いません。前日に参加用URLをお送りします。</p>
+      </div>
+      <!-- ▼ この回のアスメル予約フォームURLに差し替え ▼ -->
+      <a href="ASMEL_FORM_URL_0808" class="go">この回で予約する</a>
+    </div>
+
+    <!-- ── 8/12 Zoom ── -->
+    <div class="dcard">
+      <div class="when">
+        <div class="md"><span class="mo">8</span>/12</div>
+        <div class="dow">水曜日</div>
+        <div class="time">20:00〜</div>
+      </div>
+      <div class="what">
+        <span class="fmt zoom">ZOOM・オンライン</span>
+        <h3>ご自宅から参加</h3>
+        <p>お仕事のあとでも間に合う時間です。カメラ・マイクはオフのままで構いません。</p>
+      </div>
+      <a href="ASMEL_FORM_URL_0812" class="go">この回で予約する</a>
+    </div>
+
+    <!-- ── 8/15 大阪会場 ── -->
+    <div class="dcard venue">
+      <span class="tag">席数に限りあり</span>
+      <div class="when">
+        <div class="md"><span class="mo">8</span>/15</div>
+        <div class="dow">土曜日</div>
+        <div class="time">14:00〜16:00</div>
+      </div>
+      <div class="what">
+        <span class="fmt hall">会場・大阪／新大阪</span>
+        <h3>新大阪 会場セミナー</h3>
+        <p>その場で直接ご質問いただけます。設定でつまずいた箇所も、隣で見ながらお手伝いできます。詳しい会場は予約後のメールでご案内します。</p>
+      </div>
+      <a href="ASMEL_FORM_URL_0815" class="go">この回で予約する</a>
+    </div>
+
+    <!-- ── 8/19 Zoom ── -->
+    <div class="dcard">
+      <div class="when">
+        <div class="md"><span class="mo">8</span>/19</div>
+        <div class="dow">水曜日</div>
+        <div class="time">20:00〜</div>
+      </div>
+      <div class="what">
+        <span class="fmt zoom">ZOOM・オンライン</span>
+        <h3>ご自宅から参加</h3>
+        <p>お盆明けの回です。カメラ・マイクはオフのままで構いません。</p>
+      </div>
+      <a href="ASMEL_FORM_URL_0819" class="go">この回で予約する</a>
+    </div>
+
+    <!-- ── 8/22 Zoom ── -->
+    <div class="dcard">
+      <div class="when">
+        <div class="md"><span class="mo">8</span>/22</div>
+        <div class="dow">土曜日</div>
+        <div class="time">20:00〜</div>
+      </div>
+      <div class="what">
+        <span class="fmt zoom">ZOOM・オンライン</span>
+        <h3>ご自宅から参加</h3>
+        <p>平日の夜が難しい方へ。土曜の夜の回です。</p>
+      </div>
+      <a href="ASMEL_FORM_URL_0822" class="go">この回で予約する</a>
+    </div>
+
+    <!-- ── 8/26 Zoom ── -->
+    <div class="dcard">
+      <div class="when">
+        <div class="md"><span class="mo">8</span>/26</div>
+        <div class="dow">水曜日</div>
+        <div class="time">20:00〜</div>
+      </div>
+      <div class="what">
+        <span class="fmt zoom">ZOOM・オンライン</span>
+        <h3>ご自宅から参加</h3>
+        <p>8月のオンライン開催は、この回が最後です。</p>
+      </div>
+      <a href="ASMEL_FORM_URL_0826" class="go">この回で予約する</a>
+    </div>
+
+    <!-- ── 8/30 東京会場 ── -->
+    <div class="dcard venue">
+      <span class="tag">席数に限りあり</span>
+      <div class="when">
+        <div class="md"><span class="mo">8</span>/30</div>
+        <div class="dow">日曜日</div>
+        <div class="time">14:00〜16:00</div>
+      </div>
+      <div class="what">
+        <span class="fmt hall">会場・東京／代々木</span>
+        <h3>代々木 会場セミナー</h3>
+        <p>その場で直接ご質問いただけます。設定でつまずいた箇所も、隣で見ながらお手伝いできます。詳しい会場は予約後のメールでご案内します。</p>
+      </div>
+      <a href="ASMEL_FORM_URL_0830" class="go">この回で予約する</a>
+    </div>
+
+  </div>
+
+  <div class="notice">
+    <strong>お選びいただくのは1回だけで構いません。</strong><br>
+    内容はどの回も同じです。ご都合が悪くなった場合は、予約後に届くメールからご連絡いただければ、別の回にお席を移します。
+  </div>
+
+  <hr class="gold-line">
+
+  <h2 class="sec">開催概要</h2>
+
+  <div class="info">
+    <dl>
+      <dt>所要時間</dt>
+      <dd>Zoom開催：約60分＋質疑応答／会場開催：14:00〜16:00</dd>
+      <dt>参加費</dt>
+      <dd><span style="color:var(--gold-light);font-weight:700">無料</span></dd>
+      <dt>ご用意</dt>
+      <dd>スマートフォン、またはパソコン<br><span style="color:var(--text-muted);font-size:.85rem">当日その場で設定まで進めますので、お手元にご準備ください。会場にお越しの方もお持ちください。</span></dd>
+      <dt>登壇</dt>
+      <dd>上田 幸司（TubeCast 開発者）</dd>
+      <dt>録画</dt>
+      <dd>配布はありません<br><span style="color:var(--text-muted);font-size:.85rem">実際の管理画面をそのままお見せする都合上、記録に残さない形で開催しています。</span></dd>
+    </dl>
+  </div>
+
+  <hr class="gold-line">
+
+  <h2 class="sec">こんな方に<span class="gold">来ていただきたい</span></h2>
+
+  <div class="two">
+    <div class="card yes">
+      <h3>ぜひご参加ください</h3>
+      <ul>
+        <li>TubeCastを受け取ったが、まだ設定していない</li>
+        <li>設定は済んだが、この先どう伸ばすか分からない</li>
+        <li>月2万円ではなく、その先を目指したい</li>
+        <li>パソコン操作に不安がある</li>
+        <li>過去に副業で挫折した経験がある</li>
+      </ul>
+    </div>
+    <div class="card no">
+      <h3>向いていないかもしれません</h3>
+      <ul>
+        <li>何もせずにお金が入る話を探している</li>
+        <li>今月中に大きな金額が必要な状況にある</li>
+        <li>1日10分の作業時間も取れない</li>
+        <li>人の話を聞くつもりがない</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="gold-line">
+
+  <h2 class="sec">登壇者</h2>
+
+  <div class="speaker">
+    <div class="ph">写真<br>差し替え</div>
+    <div>
+      <h3>上田 幸司</h3>
+      <div class="role">TubeCast 開発者</div>
+      <p>プログラミング不要の自動化ツールを20年にわたり開発。スマートフォンアプリの黎明期には、知識ゼロから始めた受講者を多数輩出した。これまでに1000人以上のコミュニティを運営。「個人が仕組みで稼ぐ」ことに一貫して取り組んできた開発者。</p>
+    </div>
+  </div>
+
+  <hr class="gold-line">
+
+  <div style="text-align:center">
+    <h2 class="sec">お席を確保してください</h2>
+    <p class="sec-lead" style="margin-bottom:26px">所要30秒。入力はお名前とメールアドレスだけです。</p>
+    <a href="#dates" style="display:inline-block;text-decoration:none;
+      background:linear-gradient(180deg,#F7E9BE 0%,var(--gold) 45%,var(--gold-deep) 100%);
+      color:#1A1206;font-weight:900;font-size:1.2rem;padding:20px 46px;border-radius:60px;
+      box-shadow:0 10px 34px rgba(212,175,55,.4),inset 0 1px 0 rgba(255,255,255,.6)">
+      日程を選ぶ ↑
+    </a>
+  </div>
+
+  <div class="notice">
+    当日は、セミナーの内容に加えて、<strong>さらに踏み込んで取り組みたい方向けの有料プログラムのご案内</strong>も含まれます。
+    ご案内をお聞きいただいたうえで、必要ないと判断されて構いません。無理に契約をお勧めすることはありません。
+  </div>
+
+  <footer>
+    <p class="disclaimer">
+      ※記載の実績・数値は個人の経験に基づくものであり、成果には個人差があります。収益を保証するものではありません。<br>
+      ※「月100万円」は目標値であり、その達成を約束するものではありません。<br>
+      ※本ページは登録者限定の非公開ページです。
+    </p>
+    <a href="#">特定商取引法に基づく表記</a> &nbsp;|&nbsp;
+    <a href="#">プライバシーポリシー</a>
+    <p>© 2026 TubeCast Project. All Rights Reserved.</p>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ご予約を承りました｜TubeCast 使い方セミナー</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-deep:#05080F; --bg-panel:#0B111E;
+  --gold:#D4AF37; --gold-light:#F5E6B8; --gold-deep:#9C7A1B; --champagne:#EFE3C2;
+  --text-white:#FFF; --text-silver:#C9D2DF; --text-muted:#7B8494;
+  --green:#00D26A; --green-deep:#009E50; --red:#E5534B;
+  --max:820px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg-deep);color:var(--text-white);line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.bg-layer{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(ellipse 90% 45% at 50% -5%,rgba(0,210,106,.10) 0%,transparent 62%),
+  radial-gradient(ellipse 70% 45% at 50% 30%,rgba(212,175,55,.08) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 35% at 90% 92%,rgba(212,175,55,.05) 0%,transparent 60%)}
+.bg-grid{position:fixed;inset:0;z-index:-1;
+  background-image:linear-gradient(rgba(212,175,55,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,.03) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 70% 50% at 50% 0%,#000 0%,transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 50% at 50% 0%,#000 0%,transparent 80%);pointer-events:none}
+.container{max-width:var(--max);margin:0 auto;padding:52px 22px 80px}
+
+/* ── 完了ヘッダー ── */
+.done{text-align:center;margin-bottom:14px}
+.check{
+  width:78px;height:78px;margin:0 auto 22px;border-radius:50%;
+  border:1px solid rgba(0,210,106,.55);
+  background:radial-gradient(circle at 50% 40%,rgba(0,210,106,.22),rgba(0,210,106,.04));
+  box-shadow:0 0 46px rgba(0,210,106,.28);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.3rem;color:#6BF0AC;line-height:1;
+}
+.done h1{font-family:'Noto Serif JP',serif;font-weight:900;
+  font-size:clamp(1.5rem,5vw,2.4rem);line-height:1.5}
+.done h1 .gold{background:linear-gradient(180deg,var(--gold-light) 0%,var(--gold) 45%,var(--gold-deep) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.done .sub{margin-top:18px;color:var(--text-silver);font-size:clamp(.93rem,2.6vw,1.04rem)}
+
+/* ── メール確認の強調帯 ── */
+.mailcheck{
+  margin:34px 0 0;border-radius:14px;padding:26px 24px;text-align:center;
+  background:linear-gradient(180deg,rgba(212,175,55,.12) 0%,rgba(11,17,30,.92) 65%);
+  border:1px solid rgba(212,175,55,.5);
+  box-shadow:0 0 60px rgba(212,175,55,.12);
+}
+.mailcheck .k{color:var(--gold-light);font-weight:700;letter-spacing:.14em;font-size:.78rem;margin-bottom:10px}
+.mailcheck h2{font-family:'Noto Serif JP',serif;font-weight:900;font-size:clamp(1.15rem,3.9vw,1.6rem);line-height:1.55;margin-bottom:12px}
+.mailcheck p{color:var(--text-silver);font-size:.93rem}
+.mailcheck .warn{
+  margin-top:18px;padding:14px 16px;border-radius:9px;
+  background:rgba(229,83,75,.08);border:1px solid rgba(229,83,75,.35);
+  color:#F0B9B5;font-size:.87rem;line-height:1.8;text-align:left;
+}
+.mailcheck .warn b{color:#FFD9D5}
+
+.gold-line{border:none;height:1px;max-width:500px;margin:56px auto;position:relative;
+  background:linear-gradient(90deg,transparent,rgba(212,175,55,.55),transparent)}
+.gold-line::after{content:"◆";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  color:var(--gold);font-size:.6rem;background:var(--bg-deep);padding:0 14px}
+
+h2.sec{font-family:'Noto Serif JP',serif;font-weight:900;text-align:center;
+  font-size:clamp(1.2rem,4.2vw,1.75rem);line-height:1.5;margin-bottom:12px}
+h2.sec .gold{color:var(--gold-light)}
+p.sec-lead{text-align:center;color:var(--text-silver);font-size:.93rem;margin-bottom:30px}
+
+/* ── 準備リスト ── */
+.prep{counter-reset:p;display:grid;gap:13px}
+.prep-item{
+  position:relative;display:flex;gap:16px;align-items:flex-start;
+  background:var(--bg-panel);border:1px solid rgba(212,175,55,.22);
+  border-radius:13px;padding:22px 22px;
+}
+.prep-item .n{
+  counter-increment:p;flex-shrink:0;
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Noto Serif JP',serif;font-weight:900;font-size:.92rem;
+  color:#1A1206;background:linear-gradient(180deg,var(--gold-light),var(--gold));
+}
+.prep-item .n::before{content:counter(p)}
+.prep-item h3{font-size:clamp(1rem,3vw,1.12rem);font-weight:700;line-height:1.6;margin-bottom:6px}
+.prep-item h3 .hl{color:var(--gold-light)}
+.prep-item p{color:var(--text-silver);font-size:.9rem;line-height:1.85}
+.prep-item a.inline{color:var(--gold-light);font-weight:700}
+.mini-btn{
+  display:inline-block;margin-top:12px;text-decoration:none;
+  border:1px solid rgba(212,175,55,.55);color:var(--gold-light);
+  font-weight:700;font-size:.87rem;padding:9px 20px;border-radius:40px;
+  background:rgba(212,175,55,.07);transition:background .18s ease}
+.mini-btn:hover{background:rgba(212,175,55,.16)}
+
+/* ── 当日の流れ ── */
+.flow{border-left:1px solid rgba(212,175,55,.3);margin-left:8px;padding-left:26px}
+.flow-item{position:relative;padding-bottom:26px}
+.flow-item:last-child{padding-bottom:0}
+.flow-item::before{
+  content:"";position:absolute;left:-32px;top:9px;width:11px;height:11px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 0 4px rgba(212,175,55,.16)}
+.flow-item .t{color:var(--gold-light);font-weight:700;font-size:.85rem;letter-spacing:.05em}
+.flow-item h3{font-size:1.02rem;font-weight:700;margin:2px 0 4px}
+.flow-item p{color:var(--text-silver);font-size:.9rem;line-height:1.85}
+
+/* ── Q&A ── */
+.panel{background:var(--bg-panel);border:1px solid rgba(212,175,55,.2);border-radius:12px;padding:22px 22px}
+.panel+.panel{margin-top:13px}
+.panel h3{font-size:.99rem;font-weight:700;color:var(--gold-light);margin-bottom:7px;
+  display:flex;align-items:flex-start;gap:9px;line-height:1.6}
+.panel h3::before{content:"Q.";color:var(--gold);font-weight:900;flex-shrink:0}
+.panel p{color:var(--text-silver);font-size:.91rem}
+
+.notice{margin-top:32px;border-left:2px solid rgba(212,175,55,.5);padding:4px 0 4px 18px;
+  color:var(--text-silver);font-size:.88rem}
+.notice strong{color:var(--champagne)}
+
+footer{text-align:center;padding:44px 20px 32px;border-top:1px solid rgba(255,255,255,.07);
+  margin-top:56px;color:var(--text-muted);font-size:.78rem;line-height:2}
+footer a{color:var(--text-muted);text-decoration:underline}
+.disclaimer{max-width:640px;margin:0 auto 18px;color:#6C7484;font-size:.74rem;line-height:1.85}
+
+/* ── 予約内容 ── */
+.booked{margin:34px 0 0;text-align:center;padding:26px 22px;border-radius:14px;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(11,17,30,.9));
+  border:1px solid rgba(255,255,255,.14)}
+.booked .bk{font-size:.76rem;letter-spacing:.16em;color:var(--text-muted);margin-bottom:8px}
+.booked .bd{font-family:'Noto Serif JP',serif;font-weight:900;font-size:clamp(1.5rem,5.4vw,2.1rem);line-height:1.3}
+.booked .bt{font-weight:700;font-size:1.15rem;color:var(--gold-light);margin-top:2px}
+.booked .bf{display:inline-block;margin-top:12px;font-size:.8rem;font-weight:700;letter-spacing:.08em;padding:4px 14px;border-radius:6px}
+.booked .bf.zoom{background:rgba(0,210,106,.12);border:1px solid rgba(0,210,106,.45);color:#6BF0AC}
+.booked .bf.hall{background:rgba(90,169,240,.12);border:1px solid rgba(90,169,240,.5);color:#A8D3F8}
+.booked .bn{margin-top:12px;color:var(--text-muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="bg-layer"></div>
+<div class="bg-grid"></div>
+
+<div class="container">
+
+  <div class="done">
+    <div class="check">✓</div>
+    <h1>お席を<span class="gold">確保しました。</span></h1>
+    <p class="sub">
+      ご予約ありがとうございます。<br>
+      当日、お会いできるのを楽しみにしています。
+    </p>
+  </div>
+
+  <div class="booked">
+    <div class="bk">ご予約いただいた回</div>
+    <div class="bd">8月12日（水）</div>
+    <div class="bt">20:00〜</div>
+    <div class="bf zoom">ZOOM・オンライン</div>
+    
+  </div>
+
+  <div class="mailcheck">
+    <div class="k">最初にお願いしたいこと</div>
+    <h2>いますぐ、メールを<br>ご確認ください。</h2>
+    <p>
+      ご入力いただいたメールアドレス宛に、<strong style="color:var(--champagne)">参加用URL・当日のご案内</strong>を記載した<br>
+      確認メールをお送りしました。
+    </p>
+    <div class="warn">
+      <b>メールが見当たらない場合</b><br>
+      ① 迷惑メールフォルダをご確認ください（キャリアメールをお使いの方は特に入りやすいです）<br>
+      ② それでも見つからない場合は、このページ下部の連絡先までお知らせください。すぐに再送します
+    </div>
+  </div>
+
+  <hr class="gold-line">
+
+  <h2 class="sec">当日までに、<span class="gold">3つだけ</span>お願いします</h2>
+  <p class="sec-lead">どれも数分で終わります。当日つまずかないための準備です。</p>
+
+  <div class="prep">
+
+    <div class="prep-item">
+      <div class="n"></div>
+      <div>
+        <h3><span class="hl">8月12日（水）</span>を、カレンダーに入れてください</h3>
+        <p>忘れてしまう方が、毎回いらっしゃいます。録画の配布はありませんので、この日を逃すと次の機会までお待ちいただくことになります。いま、スマートフォンのカレンダーに入れてしまってください。</p>
+      </div>
+    </div>
+
+    <div class="prep-item">
+      <div class="n"></div>
+      <div>
+        <h3>TubeCastの受け取りが<span class="hl">まだの方は、先に済ませてください</span></h3>
+        <p>当日は、あなたの管理画面を実際に触りながら初期設定まで進めます。受け取りが済んでいないと、そこだけご一緒できません。まだの方は、いま済ませておいてください。3分ほどで終わります。</p>
+        <!-- ▼ TOOL_FORM_URL を、ツール受け取りフォームのURLに差し替えてください ▼ -->
+        <a href="TOOL_FORM_URL" class="mini-btn">システムを受け取る →</a>
+      </div>
+    </div>
+
+    <div class="prep-item">
+      <div class="n"></div>
+      <div>
+        <h3>スマートフォン、またはパソコンを<span class="hl">お手元にご用意ください</span></h3>
+        <p>事前にZoomアプリを入れておいていただくとスムーズです。入れ方が分からない場合は、確認メールに手順を書いていますのでご覧ください。当日は設定作業がありますので、必ずお手元に端末をご用意ください。</p>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="gold-line">
+
+  <h2 class="sec">当日の<span class="gold">流れ</span></h2>
+  <p class="sec-lead">8月12日（水） 20:00〜</p>
+
+  <div class="flow">
+    <div class="flow-item">
+      <div class="t">19:55 入室開始</div>
+      <h3>ご入室</h3>
+      <p>確認メールのURLから入室できます。カメラもマイクもオフのままで構いません。お顔を出す必要はありません。</p>
+    </div>
+    <div class="flow-item">
+      <div class="t">20:00 - 20:20</div>
+      <h3>なぜ広告収入だけでは月2万円で止まるのか</h3>
+      <p>収益の構造を数字で分解します。まず現在地を正確に把握していただきます。</p>
+    </div>
+    <div class="flow-item">
+      <div class="t">20:20 - 20:45</div>
+      <h3>同じ再生数のまま、収益の桁を変える組み立て方</h3>
+      <p>再生数ではなく人数で考える——その具体的な手順を、実際の画面をお見せしながらお話しします。ジャンルの選び方もここで。</p>
+    </div>
+    <div class="flow-item">
+      <div class="t">20:45 - 21:00</div>
+      <h3>TubeCastの初期設定を、その場で完了</h3>
+      <p>管理画面を画面共有しながら、一緒に設定を進めます。この日のうちに、AIが動き出す状態まで持っていきます。</p>
+    </div>
+    <div class="flow-item">
+      <div class="t">21:00 -</div>
+      <h3>質疑応答</h3>
+      <p>時間の許すかぎり、開発者本人が直接お答えします。</p>
+    </div>
+  </div>
+
+  <hr class="gold-line">
+
+  <h2 class="sec">よくある<span class="gold">ご質問</span></h2>
+
+  <div class="panel">
+    <h3>Zoomを使ったことがありません。参加できますか？</h3>
+    <p>できます。確認メールに、スマートフォンでの入り方を画像つきでご案内しています。それでも不安な場合は、開始15分前から入室できるようにしておきますので、早めに入って動作を確認してください。分からなければご連絡いただければ対応します。</p>
+  </div>
+  <div class="panel">
+    <h3>顔や声を出す必要はありますか？</h3>
+    <p>ありません。カメラもマイクもオフのままご参加ください。ご質問はチャットでも受け付けます。</p>
+  </div>
+  <div class="panel">
+    <h3>途中から参加したり、途中で抜けたりしてもいいですか？</h3>
+    <p>構いません。ただ、前半の「収益の構造」をお聞きいただかないと、後半の話が分かりにくくなります。できるだけ最初からご参加ください。</p>
+  </div>
+  <div class="panel">
+    <h3>都合が悪くなりました。日程を変更できますか？</h3>
+    <p>できます。確認メールにご返信いただくか、このページ下部の連絡先までお知らせください。別の回にお席を移します。ご連絡なしの不参加だけは、お控えいただけると助かります。</p>
+  </div>
+  <div class="panel">
+    <h3>録画をあとで見ることはできますか？</h3>
+    <p>申し訳ありませんが、録画の配布はしていません。実際の管理画面をそのままお見せする都合上、記録に残さない形で開催しています。</p>
+  </div>
+  <div class="panel">
+    <h3>知人を連れて行ってもいいですか？</h3>
+    <p>Zoomの場合も、お一人ずつご予約いただく形にしています。ご一緒の方にも、このページの前のご案内をお送りください。</p>
+  </div>
+
+  <div class="notice">
+    <strong>動画内でご案内した「個別サポート会」について</strong><br>
+    個別サポート会は、このセミナーにご参加いただいた方へ、当日その場でご案内します。
+    お申し込みの手続きなどは必要ありませんので、まずはセミナーにお越しください。
+  </div>
+
+  <hr class="gold-line">
+
+  <div style="text-align:center">
+    <p style="color:var(--text-silver);font-size:.93rem">
+      第1話をもう一度ご覧になりたい方は、こちらからどうぞ。
+    </p>
+    <!-- ▼ video.html を、動画視聴ページのURLに差し替えてください ▼ -->
+    <a href="video.html" class="mini-btn" style="margin-top:14px">第1話をもう一度見る →</a>
+  </div>
+
+  <footer>
+    <p class="disclaimer">
+      ※記載の実績・数値は個人の経験に基づくものであり、成果には個人差があります。収益を保証するものではありません。<br>
+      ※「月100万円」は目標値であり、その達成を約束するものではありません。<br>
+      ※本ページは登録者限定の非公開ページです。
+    </p>
+    <p>お問い合わせ：<a href="mailto:SUPPORT_EMAIL">SUPPORT_EMAIL</a></p>
+    <a href="#">特定商取引法に基づく表記</a> &nbsp;|&nbsp;
+    <a href="#">プライバシーポリシー</a>
+    <p>© 2026 TubeCast Project. All Rights Reserved.</p>
+  </footer>
+
+</div>
+</body>
+</html>
