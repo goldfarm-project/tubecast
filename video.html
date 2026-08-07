@@ -122,6 +122,17 @@ body{
   box-shadow:0 0 12px rgba(212,175,55,.6)}
 #seek::-moz-range-thumb{width:18px;height:18px;border:0;border-radius:50%;
   background:#E8CF8C;box-shadow:0 0 12px rgba(212,175,55,.6)}
+/* ── フォールバック ── */
+#fbk{position:absolute;inset:0;z-index:5;display:none;flex-direction:column;align-items:center;
+  justify-content:center;gap:12px;text-align:center;padding:24px;background:rgba(4,6,11,.96)}
+#fbk .fb-t{color:#fff;font-weight:700;font-size:1.05rem}
+#fbk .fb-d{color:var(--text-silver);font-size:.85rem;line-height:1.8}
+#fbk .fb-btn{display:inline-block;text-decoration:none;margin-top:6px;
+  background:linear-gradient(180deg,#F7E9BE 0%,var(--gold) 48%,var(--gold-deep) 100%);
+  color:#1A1206;font-weight:900;font-size:1rem;padding:14px 30px;border-radius:50px;
+  box-shadow:0 8px 26px rgba(212,175,55,.4)}
+#fbk .fb-retry{background:none;border:1px solid rgba(255,255,255,.3);color:var(--text-silver);
+  font-size:.85rem;padding:9px 22px;border-radius:40px;cursor:pointer;font-family:inherit}
 /* ── 全画面 ── */
 #btnFS{font-size:1.35rem}
 .video-shell:fullscreen{border-radius:0;border:none;box-shadow:none;background:#000;
@@ -293,6 +304,12 @@ footer a{color:var(--text-muted);text-decoration:underline}
         <div class="cv-play"><span></span></div>
         <div class="cv-hint">タップして再生</div>
       </div>
+      <div id="fbk">
+        <p class="fb-t">動画を読み込めませんでした</p>
+        <p class="fb-d">通信環境をご確認のうえ、もう一度お試しください。<br>それでも再生できない場合は、下のボタンからご覧いただけます。</p>
+        <a class="fb-btn" href="https://www.youtube.com/watch?v=FsNi-KEdoRQ" target="_blank" rel="noopener">YouTubeで動画を見る →</a>
+        <button class="fb-retry" id="btnRetry">もう一度試す</button>
+      </div>
       <div id="ctrl">
         <button id="btnPlay" aria-label="再生/一時停止"><span id="icoPlay">▶</span></button>
         <span id="tCur">0:00</span>
@@ -425,11 +442,14 @@ window.onYouTubeIframeAPIReady=function(){
   ytPlayer=new YT.Player("ytp",{videoId:YT_ID,
     playerVars:{controls:0,rel:0,playsinline:1,iv_load_policy:3,disablekb:1,fs:0,
       modestbranding:1,origin:location.origin},
-    events:{onReady:function(){ytReady=true;killCC();
+    events:{onError:function(){showFbk();},
+      onReady:function(){ytReady=true;killCC();
         var d=ytPlayer.getDuration();if(d)document.getElementById("tDur").textContent=fmt(d);},
       onStateChange:function(e){
         var c=document.getElementById("cover"),icon=document.getElementById("icoPlay");
-        if(e.data===YT.PlayerState.PLAYING){killCC();c.style.display="none";icon.textContent="❚❚";
+        if(e.data===YT.PlayerState.PLAYING){clearTimeout(stallTimer);
+          document.getElementById("fbk").style.display="none";
+          killCC();c.style.display="none";icon.textContent="❚❚";
           document.getElementById("ctrl").style.display="flex";
           document.getElementById("tapLayer").style.display="block";
           var d=ytPlayer.getDuration();if(d)document.getElementById("tDur").textContent=fmt(d);}
@@ -442,9 +462,20 @@ window.onYouTubeIframeAPIReady=function(){
       }}});
 };
 function killCC(){try{ytPlayer.unloadModule("captions");ytPlayer.unloadModule("cc");}catch(e){}}
+function showFbk(){document.getElementById("fbk").style.display="flex";
+  document.getElementById("cover").style.display="none";}
+var stallTimer=null;
+function watchStall(){clearTimeout(stallTimer);
+  stallTimer=setTimeout(function(){
+    if(ytReady&&ytPlayer.getPlayerState&&ytPlayer.getPlayerState()===3&&ytPlayer.getCurrentTime()<0.5){showFbk();}
+  },8000);}
+document.getElementById("btnRetry").addEventListener("click",function(){
+  document.getElementById("fbk").style.display="none";
+  document.getElementById("cover").style.display="flex";
+  try{ytPlayer.playVideo();watchStall();}catch(e){}});
 function togglePlay(){if(!ytReady)return;
   var st=ytPlayer.getPlayerState();
-  if(st===YT.PlayerState.PLAYING){ytPlayer.pauseVideo();}else{ytPlayer.playVideo();}}
+  if(st===YT.PlayerState.PLAYING){ytPlayer.pauseVideo();}else{ytPlayer.playVideo();watchStall();}}
 document.getElementById("cover").addEventListener("click",togglePlay);
 document.getElementById("tapLayer").addEventListener("click",togglePlay);
 document.getElementById("btnPlay").addEventListener("click",togglePlay);
