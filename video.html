@@ -95,16 +95,13 @@ body{
 #ytp iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none}
 #tapLayer{position:absolute;inset:0;bottom:64px;cursor:pointer;display:none}
 #cover{position:absolute;inset:0;cursor:pointer;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:14px;text-align:center;padding:20px;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 20%, rgba(212,175,55,.16) 0%, transparent 60%),
-    linear-gradient(180deg,#0A0F1B 0%,#05080F 100%)}
-#cover.paused{background:rgba(4,6,11,.94)}
-.cv-badge{border:1px solid rgba(212,175,55,.55);color:var(--gold-light);font-weight:700;
-  font-size:.78rem;letter-spacing:.14em;padding:5px 18px;border-radius:40px}
-.cv-title{font-family:'Noto Serif JP',serif;font-weight:900;color:#fff;
-  font-size:clamp(1.05rem,3.4vw,1.7rem);line-height:1.5}
-.cv-play{width:84px;height:84px;border-radius:50%;margin-top:6px;
+  align-items:center;justify-content:flex-end;gap:8px;text-align:center;padding:0 20px 4.5%;
+  background:url('thumb.jpg') center/cover no-repeat #05080F}
+#cover::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.05) 55%, rgba(3,5,9,.62) 100%)}
+#cover.paused::before{background:rgba(3,5,9,.72)}
+#cover>*{position:relative;z-index:1}
+.cv-play{width:76px;height:76px;border-radius:50%;
   background:linear-gradient(180deg,#F7E9BE 0%,var(--gold) 48%,var(--gold-deep) 100%);
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 0 50px rgba(212,175,55,.55);transition:transform .15s ease}
@@ -284,8 +281,6 @@ footer a{color:var(--text-muted);text-decoration:underline}
       <div id="ytp"></div>
       <div id="tapLayer"></div>
       <div id="cover">
-        <div class="cv-badge">第 1 話・約25分</div>
-        <div class="cv-title">AIが24時間、あなたの代わりに<br>「集金」する仕組み</div>
         <div class="cv-play"><span></span></div>
         <div class="cv-hint">タップして再生</div>
       </div>
@@ -429,7 +424,8 @@ window.onYouTubeIframeAPIReady=function(){
           document.getElementById("tapLayer").style.display="block";
           var d=ytPlayer.getDuration();if(d)document.getElementById("tDur").textContent=fmt(d);}
         else if(e.data===YT.PlayerState.PAUSED){c.classList.add("paused");
-          c.style.display="flex";icon.textContent="▶";}
+          c.style.display="flex";icon.textContent="▶";
+          document.querySelector(".cv-hint").textContent="タップで再開";}
         else if(e.data===YT.PlayerState.ENDED){c.classList.add("paused");
           c.style.display="flex";icon.textContent="▶";
           document.querySelector(".cv-hint").textContent="もう一度見る";}
