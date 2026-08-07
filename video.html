@@ -122,6 +122,14 @@ body{
   box-shadow:0 0 12px rgba(212,175,55,.6)}
 #seek::-moz-range-thumb{width:18px;height:18px;border:0;border-radius:50%;
   background:#E8CF8C;box-shadow:0 0 12px rgba(212,175,55,.6)}
+/* ── 全画面 ── */
+#btnFS{font-size:1.35rem}
+.video-shell:fullscreen{border-radius:0;border:none;box-shadow:none;background:#000;
+  display:flex;align-items:center;justify-content:center}
+.video-shell:fullscreen .video-ratio{position:absolute;inset:0;padding-top:0;height:100%}
+.video-shell.fsx{position:fixed;inset:0;z-index:9999;margin:0;border-radius:0;border:none;
+  box-shadow:none;background:#000}
+.video-shell.fsx .video-ratio{position:absolute;inset:0;padding-top:0;height:100%}
 .video-note{
   margin-top:16px;text-align:center;color:var(--text-muted);font-size:.86rem;line-height:1.8;
 }
@@ -291,6 +299,7 @@ footer a{color:var(--text-muted);text-decoration:underline}
         <input type="range" id="seek" min="0" max="1000" value="0" step="1">
         <span id="tDur">--:--</span>
         <button id="btnMute" aria-label="音量"><span id="icoMute">🔊</span></button>
+        <button id="btnFS" aria-label="全画面"><span id="icoFS">⛶</span></button>
       </div>
     </div>
   </div>
@@ -443,6 +452,20 @@ document.getElementById("btnMute").addEventListener("click",function(){
   if(!ytReady)return;
   if(ytPlayer.isMuted()){ytPlayer.unMute();document.getElementById("icoMute").textContent="\uD83D\uDD0A";}
   else{ytPlayer.mute();document.getElementById("icoMute").textContent="\uD83D\uDD07";}});
+var shellEl=document.querySelector(".video-shell");
+function fsActive(){return !!document.fullscreenElement||shellEl.classList.contains("fsx");}
+function setFSIcon(){document.getElementById("icoFS").textContent=fsActive()?"🗗":"⛶";}
+document.getElementById("btnFS").addEventListener("click",function(){
+  if(document.fullscreenElement){document.exitFullscreen();return;}
+  if(shellEl.classList.contains("fsx")){shellEl.classList.remove("fsx");
+    document.documentElement.style.overflow="";document.body.style.overflow="";setFSIcon();return;}
+  if(shellEl.requestFullscreen){
+    shellEl.requestFullscreen().then(setFSIcon).catch(function(){pseudoFS();});
+  }else{pseudoFS();}
+  function pseudoFS(){shellEl.classList.add("fsx");
+    document.documentElement.style.overflow="hidden";document.body.style.overflow="hidden";setFSIcon();}
+});
+document.addEventListener("fullscreenchange",setFSIcon);
 var seekEl=document.getElementById("seek");
 seekEl.addEventListener("input",function(){seeking=true;
   if(ytReady&&ytPlayer.getDuration())document.getElementById("tCur").textContent=fmt(seekEl.value/1000*ytPlayer.getDuration());});
