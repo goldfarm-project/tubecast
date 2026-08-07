@@ -90,57 +90,6 @@ body{
 }
 .video-ratio{position:relative;width:100%;padding-top:56.25%}
 .video-ratio iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-#playerWrap{background:#000}
-#ytp{position:absolute;inset:0;width:100%;height:100%}
-#ytp iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none}
-#tapLayer{position:absolute;inset:0;bottom:64px;cursor:pointer;display:none}
-#cover{position:absolute;inset:0;cursor:pointer;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:10px;text-align:center;padding:17% 20px 0;
-  background:url('thumb.jpg') center/cover no-repeat #05080F}
-#cover::before{content:"";position:absolute;inset:0;
-  background:radial-gradient(ellipse 42% 42% at 50% 62%, rgba(0,0,0,.32) 0%, transparent 70%)}
-#cover.paused::before{background:rgba(3,5,9,.72)}
-#cover>*{position:relative;z-index:1}
-.cv-play{width:84px;height:84px;border-radius:50%;
-  background:linear-gradient(180deg,#FF6B5E 0%,#E62117 52%,#B31217 100%);
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 0 46px rgba(230,33,23,.65), inset 0 2px 0 rgba(255,255,255,.35);
-  transition:transform .15s ease}
-#cover:hover .cv-play{transform:scale(1.06)}
-.cv-play span{width:0;height:0;border-left:28px solid #FFFFFF;border-top:17px solid transparent;
-  border-bottom:17px solid transparent;margin-left:8px}
-.cv-hint{color:var(--text-muted);font-size:.82rem;letter-spacing:.1em}
-#ctrl{position:absolute;left:0;right:0;bottom:0;height:64px;display:none;align-items:center;
-  gap:12px;padding:0 16px;background:linear-gradient(180deg,transparent,rgba(3,5,9,.92) 40%)}
-#ctrl button{background:none;border:0;cursor:pointer;color:var(--gold-light);
-  font-size:1.25rem;width:44px;height:44px;flex-shrink:0}
-#ctrl span{color:var(--text-silver);font-size:.8rem;font-variant-numeric:tabular-nums;flex-shrink:0}
-#seek{flex:1;-webkit-appearance:none;appearance:none;height:5px;border-radius:3px;
-  background:rgba(255,255,255,.22);outline:none;cursor:pointer}
-#seek::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;
-  border-radius:50%;background:linear-gradient(180deg,#F7E9BE,var(--gold));
-  box-shadow:0 0 12px rgba(212,175,55,.6)}
-#seek::-moz-range-thumb{width:18px;height:18px;border:0;border-radius:50%;
-  background:#E8CF8C;box-shadow:0 0 12px rgba(212,175,55,.6)}
-/* ── フォールバック ── */
-#fbk{position:absolute;inset:0;z-index:5;display:none;flex-direction:column;align-items:center;
-  justify-content:center;gap:12px;text-align:center;padding:24px;background:rgba(4,6,11,.96)}
-#fbk .fb-t{color:#fff;font-weight:700;font-size:1.05rem}
-#fbk .fb-d{color:var(--text-silver);font-size:.85rem;line-height:1.8}
-#fbk .fb-btn{display:inline-block;text-decoration:none;margin-top:6px;
-  background:linear-gradient(180deg,#F7E9BE 0%,var(--gold) 48%,var(--gold-deep) 100%);
-  color:#1A1206;font-weight:900;font-size:1rem;padding:14px 30px;border-radius:50px;
-  box-shadow:0 8px 26px rgba(212,175,55,.4)}
-#fbk .fb-retry{background:none;border:1px solid rgba(255,255,255,.3);color:var(--text-silver);
-  font-size:.85rem;padding:9px 22px;border-radius:40px;cursor:pointer;font-family:inherit}
-/* ── 全画面 ── */
-#btnFS{font-size:1.35rem}
-.video-shell:fullscreen{border-radius:0;border:none;box-shadow:none;background:#000;
-  display:flex;align-items:center;justify-content:center}
-.video-shell:fullscreen .video-ratio{position:absolute;inset:0;padding-top:0;height:100%}
-.video-shell.fsx{position:fixed;inset:0;z-index:9999;margin:0;border-radius:0;border:none;
-  box-shadow:none;background:#000}
-.video-shell.fsx .video-ratio{position:absolute;inset:0;padding-top:0;height:100%}
 .video-note{
   margin-top:16px;text-align:center;color:var(--text-muted);font-size:.86rem;line-height:1.8;
 }
@@ -297,27 +246,13 @@ footer a{color:var(--text-muted);text-decoration:underline}
   </div>
 
   <div class="video-shell">
-    <div class="video-ratio" id="playerWrap">
-      <div id="ytp"></div>
-      <div id="tapLayer"></div>
-      <div id="cover">
-        <div class="cv-play"><span></span></div>
-        <div class="cv-hint">タップして再生</div>
-      </div>
-      <div id="fbk">
-        <p class="fb-t">動画を読み込めませんでした</p>
-        <p class="fb-d">通信環境をご確認のうえ、もう一度お試しください。<br>それでも再生できない場合は、下のボタンからご覧いただけます。</p>
-        <a class="fb-btn" href="https://www.youtube.com/watch?v=FsNi-KEdoRQ" target="_blank" rel="noopener">YouTubeで動画を見る →</a>
-        <button class="fb-retry" id="btnRetry">もう一度試す</button>
-      </div>
-      <div id="ctrl">
-        <button id="btnPlay" aria-label="再生/一時停止"><span id="icoPlay">▶</span></button>
-        <span id="tCur">0:00</span>
-        <input type="range" id="seek" min="0" max="1000" value="0" step="1">
-        <span id="tDur">--:--</span>
-        <button id="btnMute" aria-label="音量"><span id="icoMute">🔊</span></button>
-        <button id="btnFS" aria-label="全画面"><span id="icoFS">⛶</span></button>
-      </div>
+    <div class="video-ratio">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/FsNi-KEdoRQ?rel=0&modestbranding=1&playsinline=1"
+        title="第1話 AI自動集金システムの全貌"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
     </div>
   </div>
 
@@ -433,79 +368,5 @@ footer a{color:var(--text-muted);text-decoration:underline}
   </footer>
 
 </div>
-<script>
-var YT_ID="FsNi-KEdoRQ", ytPlayer=null, ytReady=false, seeking=false;
-var tag=document.createElement("script"); tag.src="https://www.youtube.com/iframe_api";
-document.head.appendChild(tag);
-function fmt(t){t=Math.max(0,Math.floor(t));var m=Math.floor(t/60),s=t%60;return m+":"+(s<10?"0":"")+s;}
-window.onYouTubeIframeAPIReady=function(){
-  ytPlayer=new YT.Player("ytp",{videoId:YT_ID,
-    playerVars:{controls:0,rel:0,playsinline:1,iv_load_policy:3,disablekb:1,fs:0,
-      modestbranding:1,origin:location.origin},
-    events:{onError:function(){showFbk();},
-      onReady:function(){ytReady=true;killCC();
-        var d=ytPlayer.getDuration();if(d)document.getElementById("tDur").textContent=fmt(d);},
-      onStateChange:function(e){
-        var c=document.getElementById("cover"),icon=document.getElementById("icoPlay");
-        if(e.data===YT.PlayerState.PLAYING){clearTimeout(stallTimer);
-          document.getElementById("fbk").style.display="none";
-          killCC();c.style.display="none";icon.textContent="❚❚";
-          document.getElementById("ctrl").style.display="flex";
-          document.getElementById("tapLayer").style.display="block";
-          var d=ytPlayer.getDuration();if(d)document.getElementById("tDur").textContent=fmt(d);}
-        else if(e.data===YT.PlayerState.PAUSED){c.classList.add("paused");
-          c.style.display="flex";icon.textContent="▶";
-          document.querySelector(".cv-hint").textContent="タップで再開";}
-        else if(e.data===YT.PlayerState.ENDED){c.classList.add("paused");
-          c.style.display="flex";icon.textContent="▶";
-          document.querySelector(".cv-hint").textContent="もう一度見る";}
-      }}});
-};
-function killCC(){try{ytPlayer.unloadModule("captions");ytPlayer.unloadModule("cc");}catch(e){}}
-function showFbk(){document.getElementById("fbk").style.display="flex";
-  document.getElementById("cover").style.display="none";}
-var stallTimer=null;
-function watchStall(){clearTimeout(stallTimer);
-  stallTimer=setTimeout(function(){
-    if(ytReady&&ytPlayer.getPlayerState&&ytPlayer.getPlayerState()===3&&ytPlayer.getCurrentTime()<0.5){showFbk();}
-  },8000);}
-document.getElementById("btnRetry").addEventListener("click",function(){
-  document.getElementById("fbk").style.display="none";
-  document.getElementById("cover").style.display="flex";
-  try{ytPlayer.playVideo();watchStall();}catch(e){}});
-function togglePlay(){if(!ytReady)return;
-  var st=ytPlayer.getPlayerState();
-  if(st===YT.PlayerState.PLAYING){ytPlayer.pauseVideo();}else{ytPlayer.playVideo();watchStall();}}
-document.getElementById("cover").addEventListener("click",togglePlay);
-document.getElementById("tapLayer").addEventListener("click",togglePlay);
-document.getElementById("btnPlay").addEventListener("click",togglePlay);
-document.getElementById("btnMute").addEventListener("click",function(){
-  if(!ytReady)return;
-  if(ytPlayer.isMuted()){ytPlayer.unMute();document.getElementById("icoMute").textContent="\uD83D\uDD0A";}
-  else{ytPlayer.mute();document.getElementById("icoMute").textContent="\uD83D\uDD07";}});
-var shellEl=document.querySelector(".video-shell");
-function fsActive(){return !!document.fullscreenElement||shellEl.classList.contains("fsx");}
-function setFSIcon(){document.getElementById("icoFS").textContent=fsActive()?"🗗":"⛶";}
-document.getElementById("btnFS").addEventListener("click",function(){
-  if(document.fullscreenElement){document.exitFullscreen();return;}
-  if(shellEl.classList.contains("fsx")){shellEl.classList.remove("fsx");
-    document.documentElement.style.overflow="";document.body.style.overflow="";setFSIcon();return;}
-  if(shellEl.requestFullscreen){
-    shellEl.requestFullscreen().then(setFSIcon).catch(function(){pseudoFS();});
-  }else{pseudoFS();}
-  function pseudoFS(){shellEl.classList.add("fsx");
-    document.documentElement.style.overflow="hidden";document.body.style.overflow="hidden";setFSIcon();}
-});
-document.addEventListener("fullscreenchange",setFSIcon);
-var seekEl=document.getElementById("seek");
-seekEl.addEventListener("input",function(){seeking=true;
-  if(ytReady&&ytPlayer.getDuration())document.getElementById("tCur").textContent=fmt(seekEl.value/1000*ytPlayer.getDuration());});
-seekEl.addEventListener("change",function(){
-  if(ytReady&&ytPlayer.getDuration()){ytPlayer.seekTo(seekEl.value/1000*ytPlayer.getDuration(),true);}seeking=false;});
-setInterval(function(){
-  if(ytReady&&!seeking&&ytPlayer.getDuration&&ytPlayer.getDuration()>0){
-    document.getElementById("tCur").textContent=fmt(ytPlayer.getCurrentTime());
-    seekEl.value=Math.round(ytPlayer.getCurrentTime()/ytPlayer.getDuration()*1000);}},500);
-</script>
 </body>
 </html>
