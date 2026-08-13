@@ -83,6 +83,16 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg-deep);color:var(-
 .ps-earn .bars i:nth-child(4){height:82%;animation-delay:1.35s}
 .ps-earn .bars i:nth-child(5){height:100%;animation-delay:1.5s}
 @keyframes barUp{to{transform:scaleY(1)}}
+.hero-cta{margin-top:26px}
+.hero-cta a{display:inline-block;text-decoration:none;
+  background:linear-gradient(180deg,#F7E9BE 0%,var(--gold) 45%,var(--gold-deep) 100%);
+  color:#1A1206;font-weight:900;font-size:1.12rem;padding:17px 44px;border-radius:60px;
+  box-shadow:0 10px 34px rgba(212,175,55,.4),inset 0 1px 0 rgba(255,255,255,.6);
+  transition:transform .18s ease,box-shadow .18s ease;animation:heroPulse 2.6s ease-in-out infinite}
+.hero-cta a:hover{transform:translateY(-2px);box-shadow:0 16px 44px rgba(212,175,55,.55),inset 0 1px 0 rgba(255,255,255,.6)}
+@keyframes heroPulse{0%,100%{box-shadow:0 10px 34px rgba(212,175,55,.4),inset 0 1px 0 rgba(255,255,255,.6)}50%{box-shadow:0 14px 46px rgba(212,175,55,.65),inset 0 1px 0 rgba(255,255,255,.6)}}
+.hero-cta .fine{font-size:.74rem;color:var(--text-muted);margin-top:10px}
+@media(max-width:560px){.hero-cta a{font-size:1rem;padding:16px 30px}}
 .hv-note{width:190px;font-size:.8rem;line-height:1.8;color:var(--text-silver)}
 .hv-note strong{color:var(--gold-light)}
 .hv-note .nlbl{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.14em;color:var(--gold);
@@ -234,6 +244,10 @@ footer a{color:var(--text-muted);text-decoration:underline}
       <strong>AIが代わりに働いてくれる仕組み</strong>を、当日その場で一緒に組み立てます。<br>
       パソコンが苦手な方でも大丈夫です。<br class="sp-br">参加費は無料。
     </p>
+    <div class="hero-cta">
+      <a href="#dates">無料で参加日程を選ぶ ↓</a>
+      <p class="fine">所要30秒／入力はお名前とメールアドレスだけ</p>
+    </div>
   </div>
 
   <div class="hero-visual">
