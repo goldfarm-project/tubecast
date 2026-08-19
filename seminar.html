@@ -176,6 +176,11 @@ p.sec-lead{text-align:center;color:var(--text-silver);font-size:.95rem;margin-bo
   box-shadow:0 8px 26px rgba(212,175,55,.34),inset 0 1px 0 rgba(255,255,255,.6);
   transition:transform .18s ease,box-shadow .18s ease}
 .dcard .go:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(212,175,55,.5),inset 0 1px 0 rgba(255,255,255,.6)}
+.dcard.closed{opacity:.55;filter:grayscale(.6)}
+.dcard.closed .when,.dcard.closed .what{filter:grayscale(1)}
+.go.disabled{background:linear-gradient(180deg,#3A4152,#262C3A);color:#8B94A5;
+  box-shadow:none;cursor:default;pointer-events:none}
+.dcard .tag.end{background:linear-gradient(180deg,#7B8494,#4E5665);color:#E6E9EF}
 .dcard .tag{
   position:absolute;top:-11px;right:20px;font-size:.7rem;font-weight:700;letter-spacing:.08em;
   background:linear-gradient(180deg,#F2B4AF,#C4564E);color:#2A0D0B;padding:2px 12px;border-radius:20px}
@@ -366,8 +371,8 @@ footer a{color:var(--text-muted);text-decoration:underline}
   <div class="dates">
 
     <!-- ── 8/15 大阪会場 ── -->
-    <div class="dcard venue">
-      <span class="tag">席数に限りあり</span>
+    <div class="dcard venue closed">
+      <span class="tag end">受付終了</span>
       <div class="when">
         <div class="md"><span class="mo">8</span>/15</div>
         <div class="dow">土曜日</div>
@@ -376,9 +381,9 @@ footer a{color:var(--text-muted);text-decoration:underline}
       <div class="what">
         <span class="fmt hall">会場・大阪／新大阪</span>
         <h3>新大阪 会場セミナー</h3>
-        <p>アクセス：<strong style="color:var(--champagne)">新大阪駅 徒歩1分</strong><br>その場で直接ご質問いただけます。設定でつまずいた箇所も、隣で見ながらお手伝いできます。<br><span style="color:var(--text-muted)">※詳しい会場は、お申込みいただいた方にご案内します。</span></p>
+        <p>この回は開催を終了しました。たくさんのご参加、ありがとうございました。<br><span style="color:var(--text-muted)">会場でのご参加を希望の方は、8/30（日）東京・代々木の回をご利用ください。</span></p>
       </div>
-      <a href="https://ex-pa.jp/item/50165" class="go">この回で予約する</a>
+      <span class="go disabled">受付を終了しました</span>
     </div>
 
     <!-- ── 8/19 Zoom ── -->
