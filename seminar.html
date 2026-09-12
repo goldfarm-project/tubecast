@@ -176,6 +176,9 @@ p.sec-lead{text-align:center;color:var(--text-silver);font-size:.95rem;margin-bo
   box-shadow:0 8px 26px rgba(212,175,55,.34),inset 0 1px 0 rgba(255,255,255,.6);
   transition:transform .18s ease,box-shadow .18s ease}
 .dcard .go:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(212,175,55,.5),inset 0 1px 0 rgba(255,255,255,.6)}
+.dcard .go.line{background:none;border:1px dashed rgba(212,175,55,.55);color:var(--gold-light);cursor:default;box-shadow:none}
+.dcard .go.line:hover{transform:none;box-shadow:none}
+.date-group{font-family:'Noto Serif JP',serif;font-weight:700;font-size:1.05rem;color:var(--text-white);margin:28px 0 2px;letter-spacing:.05em}
 .dcard.closed{opacity:.55;filter:grayscale(.6)}
 .dcard.closed .when,.dcard.closed .what{filter:grayscale(1)}
 .go.disabled{background:linear-gradient(180deg,#3A4152,#262C3A);color:#8B94A5;
@@ -369,75 +372,13 @@ footer a{color:var(--text-muted);text-decoration:underline}
   </p>
 
   <div class="dates">
+    <div class="date-group">【東京会場】</div>
 
-    <!-- ── 8/15 大阪会場 ── -->
-    <div class="dcard venue closed">
-      <span class="tag end">受付終了</span>
-      <div class="when">
-        <div class="md"><span class="mo">8</span>/15</div>
-        <div class="dow">土曜日</div>
-        <div class="time">14:00〜17:00</div>
-      </div>
-      <div class="what">
-        <span class="fmt hall">会場・大阪／新大阪</span>
-        <h3>新大阪 会場セミナー</h3>
-        <p>この回は開催を終了しました。たくさんのご参加、ありがとうございました。<br><span style="color:var(--text-muted)">会場でのご参加を希望の方は、8/30（日）東京・代々木の回をご利用ください。</span></p>
-      </div>
-      <span class="go disabled">受付を終了しました</span>
-    </div>
-
-    <!-- ── 8/19 Zoom ── -->
-    <div class="dcard closed">
-      <span class="tag end">受付終了</span>
-      <div class="when">
-        <div class="md"><span class="mo">8</span>/19</div>
-        <div class="dow">水曜日</div>
-        <div class="time">20:00〜</div>
-      </div>
-      <div class="what">
-        <span class="fmt zoom">ZOOM・オンライン</span>
-        <h3>ご自宅から参加</h3>
-        <p>この回は開催を終了しました。たくさんのご参加、ありがとうございました。</p>
-      </div>
-      <span class="go disabled">受付を終了しました</span>
-    </div>
-
-    <!-- ── 8/22 Zoom ── -->
-    <div class="dcard closed">
-      <span class="tag end">受付終了</span>
-      <div class="when">
-        <div class="md"><span class="mo">8</span>/22</div>
-        <div class="dow">土曜日</div>
-        <div class="time">20:00〜</div>
-      </div>
-      <div class="what">
-        <span class="fmt zoom">ZOOM・オンライン</span>
-        <h3>ご自宅から参加</h3>
-        <p>この回は開催を終了しました。たくさんのご参加、ありがとうございました。<br><span style="color:var(--text-muted)">オンラインでのご参加は、8/26（水）21:00の回をご利用ください。</span></p>
-      </div>
-      <span class="go disabled">受付を終了しました</span>
-    </div>
-
-    <!-- ── 8/26 Zoom ── -->
-    <div class="dcard">
-      <div class="when">
-        <div class="md"><span class="mo">8</span>/26</div>
-        <div class="dow">水曜日</div>
-        <div class="time">21:00〜</div>
-      </div>
-      <div class="what">
-        <span class="fmt zoom">ZOOM・オンライン</span>
-        <h3>ご自宅から参加</h3>
-        <p>8月のオンライン開催は、この回が最後です。</p>
-      </div>
-      <a href="https://1lejend.com/stepmail/kd.php?no=foJqOwHSa" class="go">この回で予約する</a>
-    </div>
-
-    <!-- ── 8/30 東京会場 ── -->
+    <!-- ── 9/13 東京会場 ── -->
     <div class="dcard venue">
       <span class="tag">席数に限りあり</span>
       <div class="when">
-        <div class="md"><span class="mo">8</span>/30</div>
+        <div class="md"><span class="mo">9</span>/13</div>
         <div class="dow">日曜日</div>
         <div class="time">14:00〜17:00</div>
       </div>
@@ -447,6 +388,38 @@ footer a{color:var(--text-muted);text-decoration:underline}
         <p>アクセス：<strong style="color:var(--champagne)">JR代々木駅 西口 徒歩1分</strong><br>その場で直接ご質問いただけます。設定でつまずいた箇所も、隣で見ながらお手伝いできます。<br><span style="color:var(--text-muted)">※詳しい会場は、お申込みいただいた方にご案内します。</span></p>
       </div>
       <a href="https://ex-pa.jp/item/50165" class="go">この回で予約する</a>
+    </div>
+
+    <div class="date-group">【オンラインセミナー】</div>
+
+    <!-- ── 9/16 Zoom ── -->
+    <div class="dcard">
+      <div class="when">
+        <div class="md"><span class="mo">9</span>/16</div>
+        <div class="dow">水曜日</div>
+        <div class="time">20:00〜22:00</div>
+      </div>
+      <div class="what">
+        <span class="fmt zoom">ZOOM・オンライン</span>
+        <h3>ご自宅から参加</h3>
+        <p>お仕事のあとでも間に合う、平日夜の回です。カメラ・マイクはオフのままで構いません。前日に参加用URLをお送りします。</p>
+      </div>
+      <a href="https://1lejend.com/stepmail/kd.php?no=fpzgty" class="go">この回で予約する</a>
+    </div>
+
+    <!-- ── 9/23 Zoom ── -->
+    <div class="dcard">
+      <div class="when">
+        <div class="md"><span class="mo">9</span>/23</div>
+        <div class="dow">水曜日</div>
+        <div class="time">20:00〜22:00</div>
+      </div>
+      <div class="what">
+        <span class="fmt zoom">ZOOM・オンライン</span>
+        <h3>ご自宅から参加</h3>
+        <p>9月のオンライン開催は、この回が最後です。カメラ・マイクはオフのままで構いません。前日に参加用URLをお送りします。</p>
+      </div>
+      <a href="https://1lejend.com/stepmail/kd.php?no=fpzhsIRnM" class="go">この回で予約する</a>
     </div>
 
   </div>
@@ -463,7 +436,7 @@ footer a{color:var(--text-muted);text-decoration:underline}
   <div class="info">
     <dl>
       <dt>所要時間</dt>
-      <dd>Zoom開催：約60分＋質疑応答／会場開催：14:00〜17:00</dd>
+      <dd>オンライン開催：2時間（質疑応答含む）／会場開催：14:00〜17:00</dd>
       <dt>参加費</dt>
       <dd><span style="color:var(--gold-light);font-weight:700">無料</span></dd>
       <dt>ご用意</dt>
